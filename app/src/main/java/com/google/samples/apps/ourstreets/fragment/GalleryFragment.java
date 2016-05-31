@@ -72,8 +72,7 @@ public class GalleryFragment extends Fragment implements DataView<Gallery> {
     private boolean mAnimateViewSwap;
 
     public GalleryFragment() {
-        setReenterTransition(new Fade(Fade.IN));
-        setExitTransition(new Fade(Fade.OUT));
+        setExitTransition(new Fade());
     }
 
     public static GalleryFragment newInstance() {
