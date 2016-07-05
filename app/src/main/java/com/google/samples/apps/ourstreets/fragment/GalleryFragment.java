@@ -30,7 +30,9 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.animation.FastOutLinearInInterpolator;
 import android.support.v7.widget.RecyclerView;
+import android.transition.Explode;
 import android.transition.Fade;
+import android.transition.TransitionSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -72,7 +74,15 @@ public class GalleryFragment extends Fragment implements DataView<Gallery> {
     private boolean mAnimateViewSwap;
 
     public GalleryFragment() {
-        setExitTransition(new Fade());
+
+        TransitionSet exitTransition = new TransitionSet();
+        final Fade fade = new Fade();
+        fade.addTarget(R.id.appbar);
+        exitTransition.addTransition(fade);
+        Explode explode = new Explode();
+        explode.excludeTarget(R.id.appbar, true);
+        exitTransition.addTransition(explode);
+        setExitTransition(exitTransition);
     }
 
     public static GalleryFragment newInstance() {

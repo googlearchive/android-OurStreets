@@ -84,8 +84,8 @@ public class DetailFragment extends Fragment implements DataView<Detail> {
         args.putParcelable(IntentKeys.CAMERA_POSITION, cameraPosition);
         fragment.setArguments(args);
         final TransitionInflater inflater = TransitionInflater.from(context);
-        final Transition sharedEnter = inflater.inflateTransition(R.transition.detail_enter);
-        fragment.setSharedElementEnterTransition(sharedEnter);
+        fragment.setSharedElementEnterTransition(inflater.
+                inflateTransition(R.transition.detail_shared_enter));
         return fragment;
     }
 
