@@ -21,8 +21,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="@dimen/grid_half"
-        app:cardBackgroundColor="?android:colorPrimary"
-        android:transitionGroup="false"
+        app:cardBackgroundColor="@android:color/transparent"
+        android:transitionGroup="true"
         android:clickable="true"
         android:stateListAnimator="@animator/selector_raise">
 
@@ -51,6 +51,7 @@
                 android:background="@color/blue_grey_800"
                 android:paddingStart="@dimen/grid_single"
                 android:paddingEnd="@dimen/grid_single"
+                android:clipToPadding="false"
                 android:transitionGroup="true">
 
             <TextView

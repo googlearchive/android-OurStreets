@@ -24,6 +24,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.transition.ChangeBounds;
+import android.transition.Fade;
 import android.transition.Transition;
 import android.transition.TransitionInflater;
 import android.transition.TransitionManager;
@@ -84,8 +85,9 @@ public class DetailFragment extends Fragment implements DataView<Detail> {
         args.putParcelable(IntentKeys.CAMERA_POSITION, cameraPosition);
         fragment.setArguments(args);
         final TransitionInflater inflater = TransitionInflater.from(context);
-        fragment.setSharedElementEnterTransition(inflater.
-                inflateTransition(R.transition.detail_shared_enter));
+        fragment.setSharedElementEnterTransition(
+                inflater.inflateTransition(R.transition.detail_shared_enter));
+        fragment.setEnterTransition(new Fade());
         return fragment;
     }
 

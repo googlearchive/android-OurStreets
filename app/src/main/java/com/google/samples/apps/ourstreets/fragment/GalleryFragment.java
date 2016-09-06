@@ -47,6 +47,7 @@ import com.google.samples.apps.ourstreets.R;
 import com.google.samples.apps.ourstreets.data.DataView;
 import com.google.samples.apps.ourstreets.data.GalleryPresenter;
 import com.google.samples.apps.ourstreets.model.Gallery;
+import com.google.samples.apps.ourstreets.transition.Elevation;
 import com.google.samples.apps.ourstreets.view.GalleryAdapter;
 import com.google.samples.apps.ourstreets.view.GalleryDivider;
 import com.google.samples.apps.ourstreets.view.GalleryViewHolder;
@@ -75,14 +76,22 @@ public class GalleryFragment extends Fragment implements DataView<Gallery> {
 
     public GalleryFragment() {
 
-        TransitionSet exitTransition = new TransitionSet();
         final Fade fade = new Fade();
         fade.addTarget(R.id.appbar);
-        exitTransition.addTransition(fade);
+
         Explode explode = new Explode();
         explode.excludeTarget(R.id.appbar, true);
-        exitTransition.addTransition(explode);
-        setExitTransition(exitTransition);
+
+        Elevation elevation = new Elevation();
+        elevation.addTarget(R.id.gallery_card);
+        elevation.setStartDelay(250); // arbitrarily chosen delay
+
+        TransitionSet exit = new TransitionSet();
+        exit.addTransition(fade);
+        exit.addTransition(explode);
+        exit.addTransition(elevation);
+
+        setExitTransition(exit);
     }
 
     public static GalleryFragment newInstance() {
