@@ -29,18 +29,18 @@ import com.google.samples.apps.ourstreets.R;
  */
 public class GalleryViewHolder extends RecyclerView.ViewHolder {
 
-    public final Context mContext;
-    public final View mDescriptionContainer;
-    public final TextView mTitleText;
-    public final TextView mDescriptionText;
-    public final MapView mMapView;
+    public final Context context;
+    public final View descriptionContainer;
+    public final TextView titleText;
+    public final TextView descriptionText;
+    public final MapView mapView;
 
     GalleryViewHolder(View view) {
         super(view);
-        mContext = itemView.getContext();
-        mDescriptionContainer = itemView.findViewById(R.id.container_description);
-        mTitleText = (TextView) itemView.findViewById(R.id.text_title);
-        mDescriptionText = (TextView) itemView.findViewById(R.id.text_description);
-        mMapView = (MapView) itemView.findViewById(R.id.map_view);
+        context = itemView.getContext();
+        descriptionContainer = itemView.findViewById(R.id.container_description);
+        titleText = (TextView) itemView.findViewById(R.id.text_title);
+        descriptionText = (TextView) itemView.findViewById(R.id.text_description);
+        mapView = (MapView) itemView.findViewById(R.id.map_view);
     }
 }

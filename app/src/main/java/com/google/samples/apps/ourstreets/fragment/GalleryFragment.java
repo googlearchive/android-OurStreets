@@ -148,8 +148,8 @@ public class GalleryFragment extends Fragment implements DataView<Gallery> {
         mRecyclerView.addOnItemTouchListener(
                 new RecyclerItemClickListener(getActivity()) {
                     @Override
-                    public void onItemClick(RecyclerView.ViewHolder itemHolder, int position) {
-                        showDetailFragment((GalleryViewHolder) itemHolder,
+                    public void onItemClick(RecyclerView.ViewHolder holder, int position) {
+                        showDetailFragment((GalleryViewHolder) holder,
                                 mGalleries.get(position));
                     }
                 });
@@ -180,13 +180,15 @@ public class GalleryFragment extends Fragment implements DataView<Gallery> {
         }
     }
 
-    private void showDetailFragment(@NonNull final GalleryViewHolder itemHolder,
+    private void showDetailFragment(@NonNull final GalleryViewHolder holder,
                                     @NonNull final Gallery gallery) {
-        itemHolder.mMapView.getMapAsync(new OnMapReadyCallback() {
+        // Turn of transition grouping for clicked item view to break card structure.
+        ((ViewGroup) holder.itemView).setTransitionGroup(false);
+        holder.mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(GoogleMap googleMap) {
                 CameraPosition cameraPosition = googleMap.getCameraPosition();
-                performDetailTransition(itemHolder, gallery, cameraPosition);
+                performDetailTransition(holder, gallery, cameraPosition);
             }
         });
     }
@@ -218,12 +220,10 @@ public class GalleryFragment extends Fragment implements DataView<Gallery> {
 
     private void createAndAddTransitionParticipants(@NonNull GalleryViewHolder itemHolder,
                                                     @NonNull FragmentTransaction transaction) {
-        transaction.addSharedElement(itemHolder.mDescriptionContainer,
+        transaction.addSharedElement(itemHolder.descriptionContainer,
                 getString(R.string.transition_description));
-        transaction.addSharedElement(itemHolder.mTitleText,
-                getString(R.string.transition_description_title));
-        transaction.addSharedElement(itemHolder.mDescriptionText,
-                getString(R.string.transition_description_detail));
+        transaction.addSharedElement(itemHolder.mapView,
+                getString(R.string.transition_map));
     }
 
     /**

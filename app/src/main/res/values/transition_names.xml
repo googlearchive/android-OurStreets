@@ -15,7 +15,9 @@
   -->
 
 <resources>
+    <string name="transition_item_view">ItemView</string>
     <string name="transition_description">Description</string>
     <string name="transition_description_title">Title</string>
     <string name="transition_description_detail">Detail</string>
+    <string name="transition_map">Map</string>
 </resources>
