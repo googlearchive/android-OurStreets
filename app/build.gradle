@@ -17,13 +17,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    compileSdkVersion 24
+    buildToolsVersion "24.0.2"
 
     defaultConfig {
         applicationId "com.google.samples.apps.ourstreets"
         minSdkVersion 21
-        targetSdkVersion 23
+        targetSdkVersion 24
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
@@ -48,9 +48,9 @@ android {
 }
 
 ext {
-    appCompatVersion = "23.3.0"
+    appCompatVersion = "24.0.0"
     firebaseVersion = "2.3.1"
-    mapsVersion = "8.4.0"
+    mapsVersion = "9.4.0"
     mapsUtilsVersion = "0.4"
     hamcrestVersion = "1.3"
 }

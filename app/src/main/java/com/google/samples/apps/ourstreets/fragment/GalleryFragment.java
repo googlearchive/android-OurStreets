@@ -116,7 +116,7 @@ public class GalleryFragment extends Fragment implements DataView<Gallery> {
         mRecyclerView = null;
         mEmptyView = null;
         mGalleryContent = null;
-        super.onDetach();
+        super.onDestroyView();
     }
 
     @Override

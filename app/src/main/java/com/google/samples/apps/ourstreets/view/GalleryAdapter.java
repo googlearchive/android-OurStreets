@@ -87,24 +87,22 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryViewHolder> {
         // Bind the user visible information.
         holder.mTitleText.setText(gallery.getTitle());
         holder.mDescriptionText.setText(gallery.getDescription());
-        holder.mMapView.getMapAsync(new OnMapReadyCallback() {
+        final MapView mapView = holder.mMapView;
+        mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(GoogleMap googleMap) {
                 googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(gallery.getPosition(),
                         MAP_ZOOM));
                 googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+                mapView.setVisibility(View.VISIBLE);
             }
         });
     }
 
     @Override
     public void onViewRecycled(GalleryViewHolder holder) {
-        MapView mapView = holder.mMapView;
-        GoogleMap map;
-        //noinspection deprecation
-        if (mapView != null && (map = mapView.getMap()) != null) {
-            map.setMapType(GoogleMap.MAP_TYPE_NONE);
-        }
+        // Avoid map glitches provoked due to scrolling behavior.
+        holder.mMapView.setVisibility(View.INVISIBLE);
     }
 
     @Override
